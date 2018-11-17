@@ -15,14 +15,14 @@ while choice:
     print("""
     1.Test image from MNIST DataSet Test Images
     2.Test a Image file(png)
-    4.Exit/Quit
+    3.Exit/Quit
     """)
     choice = input("What would you like to do? ")
     if choice=="1":
       print("\nEnter a Image number between 0 to 9999 from Mnist Test Images")
     elif choice=="2":
       print("\n Enter image file")
-    elif choice=="4":
+    elif choice=="3":
       print("\n Goodbye") 
       choice = None
     else:
