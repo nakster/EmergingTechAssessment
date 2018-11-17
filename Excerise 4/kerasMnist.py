@@ -50,6 +50,20 @@ model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dense(classes, activation='softmax'))
 
+# Compile model
+model.compile(loss='categorical_crossentropy', optimizer=Adam(), metrics=['accuracy'])
+
+# Fit the model To fit the model, all we have to do is declare the batch size and number of epochs to train for, then pass in our training data.
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=1, batch_size=1000)
+
+# Save the model to use test the pictures for later
+model.save('models/mnistModel.h5')
+
+# Final evaluation of the model
+score  = model.evaluate(X_test, y_test, verbose=0)
+print("Metrics(Test loss & Test Accuracy): ")
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
 
 # links https://anaconda.org/conda-forge/kerasC
 # https://elitedatascience.com/keras-tutorial-deep-learning-in-python
