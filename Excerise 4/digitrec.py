@@ -10,10 +10,13 @@ import matplotlib.pyplot as plt
 import shutil
 from skimage.io import imsave
 
+# First make a folder which will store the the downloads
+path = 'data/'
+#initialise array
+ndArray = {}
+
 # This is for the first option 
 def DownloadFiles():
-    # First make a folder which will store the the downloads
-    path = 'data/'
     # If the file does not exist then make a new file 
     # This makes sure that a file is made even when it doesnt exist
     if not os.path.exists(path):
@@ -41,7 +44,84 @@ def DownloadFiles():
             urllib.request.urlretrieve (url, path+file)
     print('Done Downloading')
 
+    # This here shows how many files exist in the directory
+    # It should have 2 different files in the folder 
+    # get a list of all the files in the folder 'data'
+    files = os.listdir(path)
+
+    #the for loop goes through each file and extracts it 
+    for file in files:
+        #checks if the file ends in .gz 
+        if file.endswith('.gz'):
+            #this reads the file with gzip 
+            with gzip.open(path+file, 'rb') as In:
+            #removes the .gz file
+                with open(path+file.split('.')[0], 'wb') as out:
+                    #shutil copies the contents from In to out
+                    shutil.copyfileobj(In, out)
+
+    for file in files:
+        if file.endswith('.gz'):
+            os.remove(path+file)   
+        else:
+            print('All files have been Removed')
+
+def saveToArray():
+    # This here shows how many files exist in the directory
+    # It should have 4 different files in the folder 
+    # get a list of all the files in the folder 'data/data'
+    files = os.listdir(path)
+
+    #go through a loop and add the files to the ndarray
+    for file in files:
+        #if the extracted file matches then proceed
+        if file.endswith('ubyte'):
+            #print('Reading the file', file)
+            #open the file if the it ends with ubyte and read 
+            with open (path+file,'rb') as f:
+                #read the file 
+                data = f.read() 
+                # find out the magic number of the file
+                magic = int.from_bytes(data[0:4], byteorder='big')
+                # find out the size of the images 
+                size = int.from_bytes(data[4:8], byteorder='big')
+                
+                # this is the size of Test images and labels 
+                if (size==10000):
+                    #here we will know if the file is a test image/label 
+                    trainOrTest = 'test'
+                # this is the size for training labels and images 
+                elif (size == 60000):
+                    #here we will know if the file is a Training image/label 
+                    trainOrTest = 'train'
+                # This checks the magic number 2051 which is for image files 
+                if (magic == 2051):
+                    imgOrLAbel = 'images'
+                    #This gets the nummber of rows 
+                    rows = int.from_bytes(data[8:12], byteorder='big')
+                    #this gets the number of columns 
+                    cols = int.from_bytes(data[12:16], byteorder='big')
+                    # read values as ints # start from 16 as pixels being from byte 16
+                    parsed = np.frombuffer(data,dtype = np.uint8, offset = 16) 
+                    # we will reshape the length, 28 x 28 
+                    parsed = parsed.reshape(size,rows,cols)  
+                # this checks the magic number 2049 which is for labels 
+                elif (magic == 2049):
+                    imgOrLAbel = 'labels'
+                    # read values as ints
+                    parsed = np.frombuffer(data, dtype=np.uint8, offset=8)
+                    #reshape 
+                    parsed = parsed.reshape(size)
+                #save each file as a array with their key 
+                ndArray[trainOrTest+'_'+imgOrLAbel] = parsed
+        else:
+            print('No File Found')
+    print('Done')
+
+
+
 DownloadFiles()
+saveToArray()
 
 choice = True
 while choice:
