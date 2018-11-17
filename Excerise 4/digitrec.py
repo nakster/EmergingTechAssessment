@@ -123,7 +123,6 @@ def saveToArray():
 # DownloadFiles() # uncomment if you want to download the files again
 saveToArray()
 
-
 choice = True
 while choice:
     print("""
@@ -135,6 +134,19 @@ while choice:
 
     if choice=="1":
         print("\nEnter a Image number between 0 to 9999 from Mnist Test Images")
+        unserInput = input()
+
+        print('The Label of the image is: ', ndArray['test_labels'][int(unserInput)]) # it has the same label as the image 
+        # This prints out the first image # int(unserInput) = unser input 
+        # find the unserInput image from the ndArray 
+        image = ndArray['test_images'][int(unserInput),:,:]
+        # reshapes the image for prediction
+        image = image.reshape(1,28,28,1)
+        # Predicting the Test set results
+        pred = model.predict(image)
+        correct_indices = np.nonzero(pred)
+        print("The program predicts image number to be:", correct_indices[-1])
+        
     elif choice=="2":
         print("\n Enter image file")
     elif choice=="3":
