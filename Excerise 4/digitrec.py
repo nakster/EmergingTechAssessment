@@ -120,8 +120,9 @@ def saveToArray():
 
 
 
-DownloadFiles()
+# DownloadFiles() # uncomment if you want to download the files again
 saveToArray()
+
 
 choice = True
 while choice:
