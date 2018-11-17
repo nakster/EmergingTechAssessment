@@ -6,9 +6,7 @@ import numpy as np
 import os
 import urllib.request
 import gzip
-import matplotlib.pyplot as plt
 import shutil
-from skimage.io import imsave
 
 # First make a folder which will store the the downloads
 path = 'data/'
@@ -148,14 +146,27 @@ while choice:
         print("The program predicts image number to be:", correct_indices[-1])
         
     elif choice=="2":
-        print("\n Enter image file")
+        # I made the images in gimp 100px * 100px 
+        # the background needs to be black and the number in white 
+        # if not it wil not work
+        print("\n Enter image file (0 to 9 just the number)")
+        unserInput = input()
+
+        # the label is the name of the image in this case 
+        print("\nThe label of the Image is", unserInput)
+        #here the image is converted to grayscale and then numpy array
+        img = Image.open('images/' + unserInput + '.png').convert("L")
+        img = img.resize((28,28))
+        im2arr = np.array(img)
+        im2arr = im2arr.reshape(1,28,28,1)
+        
+        # Predicting the Test set results
+        pred = model.predict(im2arr)
+        correct_indices = np.nonzero(pred)
+        print("The program predicts image number to be:", correct_indices[-1])
+
     elif choice=="3":
         print("\n Goodbye") 
         choice = None
     else:
         print("\n Not Valid Choice Try again")
-
-
-
-
-
