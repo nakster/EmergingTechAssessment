@@ -1,3 +1,5 @@
+# When the script is run on the computer you need to download keras with anaconda 
+# copy and paste this line in the terminal 
 # conda install -c conda-forge keras 
 from keras.datasets import mnist
 from keras.models import Sequential
