@@ -70,6 +70,7 @@ print('Test accuracy:', score[1])
 # links https://anaconda.org/conda-forge/kerasC
 # https://elitedatascience.com/keras-tutorial-deep-learning-in-python
 # https://keras.io/models/sequential/
+# https://datascience.stackexchange.com/questions/11704/reshaping-of-data-for-deep-learning-using-keras
 
 
 
