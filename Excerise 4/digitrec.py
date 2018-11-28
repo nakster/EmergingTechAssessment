@@ -162,7 +162,9 @@ while choice:
         
         # Predicting the Test set results
         pred = model.predict(im2arr)
+        print(pred)
         correct_indices = np.nonzero(pred)
+        print(correct_indices)
         print("The program predicts image number to be:", correct_indices[-1])
 
     elif choice=="3":
