@@ -17,3 +17,20 @@ containing a handwritten digit and identifies the digit using a supervised
 learning algorithm and the MNIST dataset. I coded this into two scripts.
 5. Digit recognition notebook: a jupyter notebook explaining how the
 above Python script works and discussing its performance.
+
+# How to run each of the Notebooks
+
+<img src="https://www.anaconda.com/wp-content/themes/anaconda/images/logo-dark.png" alt="anaconda" width="100" height="100"/>
+
+- First thing we need is to Download [Anaconda](https://www.anaconda.com/download/)
+- Clone my github repo or download it to your machine
+- run jupyter
+
+![](./images/gif1.gif)
+
+- It should automatically bring you to http://localhost:8888/tree/whereeveryourprojectis
+- Now you can run the scripts 
+
+![](./images/gif2.gif)
+
+
