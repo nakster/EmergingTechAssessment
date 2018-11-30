@@ -26,12 +26,12 @@ above Python script works and discussing its performance.
 - Clone my github repo or download it to your machine
 - run jupyter
 
-![](./images/gif1.gif)
+![](https://github.com/nakster/gif/blob/master/gif1.gif)
 
 - It should automatically bring you to http://localhost:8888/tree/whereeveryourprojectis
 - Now you can run the scripts 
 
-![](./images/gif2.gif)
+![](https://github.com/nakster/gif/blob/master/gif2.gif)
 
 # How to run the scripts
 
