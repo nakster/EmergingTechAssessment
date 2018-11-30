@@ -33,4 +33,13 @@ above Python script works and discussing its performance.
 
 ![](./images/gif2.gif)
 
+# How to run the scripts
+
+- Navigate to the folder and open it in cmd 
+- run the different python files by typing python and the name of the file
+- e.g python digitrec.py
+
+![](./images/gif3.gif)
+
+
 
