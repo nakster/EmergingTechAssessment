@@ -8,18 +8,19 @@ import urllib.request
 import gzip
 import shutil
 
-# First make a folder which will store the the downloads
-path = 'data/'
 #initialise array
 ndArray = {}
+# First make a folder which will store the the downloads
+path = 'data/'
+
+# If the file does not exist then make a new file 
+# This makes sure that a file is made even when it doesnt exist
+if not os.path.exists(path):
+    os.makedirs(path)
 
 # This is for the first option 
 def DownloadFiles():
-    # If the file does not exist then make a new file 
-    # This makes sure that a file is made even when it doesnt exist
-    if not os.path.exists(path):
-        os.makedirs(path)
-        
+       
     # This will store all the rest of urls that i need to download
     # The Test Images /Test Labels
     urls = ['http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz',
@@ -132,6 +133,7 @@ def checkifFilesExist():
         saveToArray()
     else:
         DownloadFiles()
+        saveToArray()
             
 checkifFilesExist()
 
