@@ -119,7 +119,21 @@ def saveToArray():
 
 
 # DownloadFiles() # uncomment if you want to download the files again
-saveToArray()
+def checkifFilesExist():
+    files = os.listdir(path)
+    counter = 0
+    
+    for file in files:
+        if file.endswith('ubyte'):
+            counter = counter + 1
+           # saveToArray()
+            print(counter)
+    if counter == 4:
+        saveToArray()
+    else:
+        DownloadFiles()
+            
+checkifFilesExist()
 
 choice = True
 while choice:
