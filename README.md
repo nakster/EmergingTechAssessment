@@ -39,7 +39,6 @@ above Python script works and discussing its performance.
 - run the different python files by typing python and the name of the file
 - e.g python digitrec.py
 
-![](./images/gif3.gif)
 
 
 
